@@ -7,7 +7,7 @@
 	<script src="build/react.js"></script>
 	<script src="build/react-dom.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
-	 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<!-- // <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
 	<meta charset="utf-8">
 	<title>React Pizza!!</title>
@@ -35,7 +35,7 @@
 				return ( <div className="container">
 					<Header/>
 					<MenuContainer/>
-					</div>);
+				</div>);
 			}
 		});
 
@@ -89,12 +89,29 @@
 			render: function() {
 
 				return (<div>{this.state.menu.map(function(item, i) {
+					debugger;
 					return (
-						<div key={i} >{item.name} </div>
-						);
+						<div key={i} ><h3>{item.name.toUpperCase()} </h3>
+							<hr/>
+							<ul className="courseUl">
+							{item.items.map(function(f, j) {
+								return (	
+									<li className="itemList"  key={j}><h3> 
+			<a href="#/{f.name}" >{f.name}</a>
+			<span className="right-align price">{f.price}</span>
+		</h3>		
+		<span className="description">    { f.desc }</span>
+		<button className="right-align addButton">Add</button>
+	</li>
+									)
+							})
+						}
+						</ul>
+					</div>
+					);
 				})}
-				</div>
-				);
+			</div>
+			);
 			}
 		});
 
@@ -102,13 +119,13 @@
 
 
 
-ReactDOM.render(
-	<div >
-		
-		<OuterContainer/>
-	</div>,
-	document.getElementById('example')
-	);
-</script>
+		ReactDOM.render(
+			<div >
+
+				<OuterContainer/>
+			</div>,
+			document.getElementById('example')
+			);
+	</script>
 </body>
 </html>
