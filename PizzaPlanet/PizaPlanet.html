@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
+	<link rel="stylesheet" type="text/css" href="assets/css/main.css">
+
+	<script src="build/react.js"></script>
+	<script src="build/react-dom.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+	 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<!-- // <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
+	<meta charset="utf-8">
+	<title>React Pizza!!</title>
+	<style type="text/css">
+
+	</style>
+</head>
+<body>
+	<div id="example"></div>
+	<script type="text/babel">
+		"use strict";
+
+
+		var React = typeof require === "function" ? require("react") : window.React;
+
+
+		var OuterContainer = React.createClass({displayName: "OuterContainer",
+			getInitialState: function() {		
+				return {
+					data: [],
+					// cartCount:1
+				};
+			},		
+			render: function() {
+				return ( <div className="container">
+					<Header/>
+					<MenuContainer/>
+					</div>);
+			}
+		});
+
+		var Header = React.createClass({displayName: "Header",
+			getInitialState: function() {
+				
+				return {
+					cartCount: 0,
+					today:new Date().getMonth()+1+"-"+new Date().getDate()+"-"+new Date().getFullYear()
+				}
+			},
+			render: function() {
+				
+				return (<div><div className="circle">
+					<h1 className="center-align">
+						<div>Pizza</div>
+						<div>Planet</div>
+					</h1>
+				</div>
+				<h2> <span>Specials for {this.state.today}  </span>
+					<span className="right-align">Cart ({this.state.cartCount}) </span>
+
+				</h2>
+			</div>
+			);
+			}
+		});
+
+		var MenuContainer = React.createClass({displayName: "MenuContainer",
+			getInitialState: function() {
+				
+				return {
+					menu:[]
+				}
+			},
+
+			componentDidMount: function() {
+
+				$.get("assets/data/menu.json", function(result) {
+
+					debugger;
+					var lastGist =jQuery.parseJSON(result).data;
+					if (this.isMounted()) {
+						this.setState({
+							menu:lastGist
+						});
+					}
+				}.bind(this));
+			},
+
+			render: function() {
+
+				return (<div>{this.state.menu.map(function(item, i) {
+					return (
+						<div key={i} >{item.name} </div>
+						);
+				})}
+				</div>
+				);
+			}
+		});
+
+
+
+
+
+ReactDOM.render(
+	<div >
+		
+		<OuterContainer/>
+	</div>,
+	document.getElementById('example')
+	);
+</script>
+</body>
+</html>
