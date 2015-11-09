@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<script src="build/react.js"></script>
+	<script src="build/react-dom.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<meta charset="utf-8">
+	<title>JS Bin</title>
+</head>
+<body>
+	<div id="example"></div>
+	<script type="text/babel">
+		var MyInput = React.createClass({
+			getInitialState: function() {
+				return {				
+					firstName: null,
+					lastName: null,
+					email:null,
+					password:null,
+					gender:'male'
+				};
+			},
+
+			handleChange: function(field) {
+
+				return event => {
+					this.setState( {[field]: event.target.value});
+				};
+			},
+
+			handleSubmit:function(event){
+				
+				event.preventDefault();
+				this.setState({
+					SubmittedfirstName: this.state.firstName,
+					SubmittedEmail:this.state.email,
+					SubmittedPassword: this.state.password,
+					SubmittedGender:this.state.gender
+
+				});
+			},
+			handleReset: function(event) {
+				event.preventDefault();
+
+				this.setState(this.getInitialState());
+			},
+			render: function() {
+				return ( 
+					<section className='container'>
+						<h3>Signup</h3>
+						<form onSubmit={this.handleSubmit} className='form-horizontal'>
+							<fieldset>
+								<div>
+									<label htmlFor='firstName'>First Name</label>
+									<input type='text' id='firstName' ref='firstName' value={this.state.firstName} onChange={this.handleChange('firstName')}  className='form-control' placeholder='First Name' />
+
+								</div>
+								<div>
+									<label htmlFor='email'>Email</label>
+									<input type='email' id='email' ref='email' value={this.state.email} onChange={this.handleChange('email')}  className='form-control' placeholder='Email' />
+
+								</div>
+								<div >
+									<label htmlFor='password'>Password</label>
+									<input type='password' id='password' ref='password' value={this.state.password} onChange={this.handleChange('password')} 
+									className='form-control' placeholder='Password' />
+
+								</div>
+
+								<label htmlFor='radio' >Gender
+									<div>
+										<input type='radio' id="male" ref='male' name='gender' value='male' checked={this.state.gender === 'male'} onChange={this.handleChange('gender')}/> Male
+										<input type='radio' id="female" ref='female' name='gender' value='female' checked={this.state.gender === 'female'} onChange={this.handleChange('gender')}/> Female
+									</div>
+								</label>
+
+								<div className='text-center form-group'>
+									<button type='submit' className='btn btn-large btn-primary'>Sign up</button>
+									{' '}
+									<button onClick={this.handleReset} className='btn btn-large btn-info'>Reset</button>
+								</div>
+							</fieldset>
+						</form>
+						<h3>Submitted values</h3>
+						<div> First Name:
+							<span>{this.state.SubmittedfirstName}</span>
+
+						</div>
+						<div> Email:
+							<span>{this.state.SubmittedEmail}</span>
+
+						</div>
+						<div> Gender:
+							<span>{this.state.SubmittedGender}</span>
+
+						</div>
+					</section>)
+}
+});
+
+ReactDOM.render(
+	<MyInput />,
+	document.getElementById('example')
+	);
+</script>
+</body>
+</html>
