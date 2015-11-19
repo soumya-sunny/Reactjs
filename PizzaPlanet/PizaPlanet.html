@@ -3,44 +3,38 @@
 <head>
 	<!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
 	<link rel="stylesheet" type="text/css" href="assets/css/main.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/jquery.parallax.css">
+	<!-- <link rel="stylesheet" type="text/css" href="assets/css/base.css"> -->
 
 	<script src="build/react.js"></script>
 	<script src="build/react-dom.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	 <script type="text/javascript" src="assets/js/jquery.interactive_bg.min.js"></script>
- <script type="text/javascript" src="assets/js/parallax.min.js"></script>
+	
+	<script type="text/javascript" src="assets/js/parallax.js"></script>
+	<script type="text/javascript" src="assets/js/jquery.parallax.js"></script>
 
 	<meta charset="utf-8">
 	<title>React Pizza!!</title>
-	<style type="text/css">
-  .bg {
-      position: absolute;
-      min-height: 100% !important;
-      width: 100%;
-      z-index: 0;
-    }
-    .parallax-window {
-    min-height: 600px;
-    background: transparent;
-}
-body{
-	margin:0;
-}
-    
-	</style>
+	
 </head>
 <body>
 
- <div class="parallax-window" data-parallax="scroll" data-image-src="assets/images/download (1).jpg"></div>
- <div class="circle">
-					<h1 class="center-align">
-						<div>Pizza</div>
-						<div>Planet</div>
-					</h1>
-				</div>
-
- 
+	<div id="parallax-window" >
+		
+		<ul>
+			<li class="layer" data-depth="0.20"><img class="bg" src="assets/images/1.jpg"></li>
+			
+		</ul>
+		
+	</div>
+	<div class="circle">
+		<h1 class="center-align">
+			<div>Pizza</div>
+			<div>Planet</div>
+		</h1>
+	</div>
+	
 
 	<div id="example"></div>
 	<script type="text/babel">
@@ -77,12 +71,12 @@ body{
 			render: function() {
 				
 				return (<div>
-				<h2> <span>Specials for {this.state.today}  </span>
-					<span className="right-align">Cart ({this.state.cartCount}) </span>
+					<h2> <span>Specials for {this.state.today}  </span>
+						<span className="right-align">Cart ({this.state.cartCount}) </span>
 
-				</h2>
-			</div>
-			);
+					</h2>
+				</div>
+				);
 			}
 		});
 
@@ -151,7 +145,9 @@ ReactDOM.render(
 	document.getElementById('example')
 	);
 </script>
- <script type="text/javascript">
+<script type="text/javascript">
+	var scene = document.getElementById('parallax-window');
+	var parallax = new Parallax(scene);
 
 </script>
 </body>

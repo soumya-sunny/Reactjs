@@ -24,6 +24,8 @@ body{
 	height: 140px;
 	margin: 0 auto;
 	color: white;
+	position: relative;
+	top: 30px;
 }
 .circle h1{
 	padding-top: 20%;
@@ -62,4 +64,23 @@ li:last-child {
 	font-style: italic;
 	font-family: serif;
 	font-size: large;
+}
+.bg {
+	
+	width: 1200px;
+	height: 200px;
+}
+.parallax-window {
+	min-height: 300px;
+	background: transparent;
+}
+body{
+	overflow: visible !important;
+}
+#parallax-window{
+	position: absolute; top: 0; left: 0;
+}
+
+#example{
+	padding-top: 50px;
 }
